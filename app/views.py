@@ -1,9 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
-from app.services.check_file_service import extract_header_upload, extract_header_url, find_matches, validate_url
+from app.models import FileSignatures
+
+from app.services.check_file_service import (
+    extract_header_upload,
+    extract_header_url,
+    find_matches,
+    validate_url,
+)
 from django.db.models.functions import Length
 from app.services.rss_service import get_feed
-from .models import Signatures
+
 
 # Create your views here.
 
@@ -12,8 +19,9 @@ def app(request: HttpRequest) -> HttpResponse:
 
     file_type = ""
     header = ""
+
     signatures = (
-        Signatures.objects.all().order_by(Length("hex_signature").desc())
+        FileSignatures.objects.all().order_by(Length("header").desc())
     ) 
     if request.method == "POST":
         if request.POST["input_type"] == "file" and request.FILES.get("file"):
@@ -27,7 +35,7 @@ def app(request: HttpRequest) -> HttpResponse:
                 header = "Url not valid!"
         file_type = find_matches(string_list=signatures, target_string=header)
 
-    
+
     return render(
         request,
         "index.html",

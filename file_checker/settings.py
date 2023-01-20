@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+# Initialise environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +32,6 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    "lab.thuong.top",
 ]
 
 
@@ -81,11 +84,11 @@ WSGI_APPLICATION = "file_checker.wsgi.application"
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fileChecker',
-        'USER': 'NoiRemote',
-        'PASSWORD': 'M0TamT401LucMa&gLag',
-        'HOST': 'lab.thuong.top',
-        'PORT': '3306',
+        'NAME': env("MYSQL_ADDON_DB"),
+        'USER': env('MYSQL_ADDON_USER'),
+        'PASSWORD': env('MYSQL_ADDON_PASSWORD'),
+        'HOST': env('MYSQL_ADDON_HOST'),
+        'PORT': env('MYSQL_ADDON_PORT'),
     }
 }
 

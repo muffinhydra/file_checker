@@ -3,7 +3,9 @@ from django.core.files.uploadedfile import UploadedFile
 import urllib.request
 from typing import List, Set
 
-from app.models import Signatures
+from app.models import FileSignatures
+
+
 
 def validate_url(url):
     # Send a HEAD request to the URL
@@ -38,10 +40,10 @@ def extract_header_url(url: str) -> str:
     return hex_header.upper()
 
 #TODO implement edgecases example: 46 4F 52 4D ?? ?? ?? ?? 49 4C 42 4D, see models TODO
-def find_matches(string_list: Set[Signatures], target_string: str) -> List[str]:
+def find_matches(string_list: Set[FileSignatures], target_string: str) -> List[str]:
     matches = []
     for s in string_list:
-        if target_string.startswith(s.hex_signature):
+        if target_string.startswith(s.header):
             matches.append(s)
     return matches
 

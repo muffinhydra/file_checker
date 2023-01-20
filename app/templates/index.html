@@ -63,7 +63,7 @@
         <!-- Add a div element with the "text-center" class to center the file type message -->
         <div class="text-center mt-2">
             {% if file_type %} {% for type in file_type %}
-            <p>File type: {{ type.filename_extension }}</p>
+            <p>File type: {{ type.extension }}</p>
             {%endfor%} {% endif %}
         </div>
         {% for item in feed %}
