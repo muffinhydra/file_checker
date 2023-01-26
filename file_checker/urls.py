@@ -17,8 +17,10 @@ from django.contrib import admin
 from django.urls import path
 
 from app.views import app
+from impressum.views import impressum
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", app),
+    path("", app, name='app'),
+    path("impressum/", impressum, name='impressum'),
 ]

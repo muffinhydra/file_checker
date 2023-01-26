@@ -10,7 +10,7 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </head>
     <body
-        class="h-100 {% if is_legitimate and given_type != '' %}legitimate{% endif %} {% if not is_legitimate and given_type != '' %}not-legitimate{% endif %}"
+        class="{% if is_legitimate and given_type != '' %}legitimate{% endif %} {% if not is_legitimate and given_type != '' %}not-legitimate{% endif %}"
     >
         <img
             class="mx-auto rounded d-block"
@@ -18,13 +18,14 @@
             src="{% static 'resources/header.png' %}"
             alt="Header image"
         />
-        <div class="container h-100">
-            <div class="row h-100 justify-content-center align-items-center">
+        <div class="container mt-5">
+            <div class="row justify-content-center align-items-center">
                 <div class="col-10 col-md-8 col-lg-6">
                     <form method="post" enctype="multipart/form-data">
-                        <h5 class="{% if given_type != '' %}textWhite{% endif %}">
+                        <h5 class="text-center {% if given_type != '' %}textWhite{% endif %}">
                             Upload a file or provide a valid URL to a publicly hosted file.
                         </h5>
+
                         {% csrf_token %}
 
                         <div id="file_input" style="display: block">
@@ -49,14 +50,22 @@
                                     id="input_type_file"
                                     checked
                                 />
-                                <label class="{% if given_type != '' %}textWhite{% endif %} for="input_type_file">Upload file</label>
+                                <label
+                                    class="{% if given_type != '' %}textWhite{% endif %}"
+                                    for="input_type_file"
+                                    >Upload file</label
+                                >
                                 <input
                                     type="radio"
                                     name="input_type"
                                     value="url"
                                     id="input_type_url"
                                 />
-                                <label class="{% if given_type != '' %}textWhite{% endif %} for="input_type_url">Enter URL</label>
+                                <label
+                                    class="{% if given_type != '' %}textWhite{% endif %}"
+                                    for="input_type_url"
+                                    >Enter URL</label
+                                >
                             </div>
                         </div>
                     </form>
@@ -64,9 +73,22 @@
             </div>
         </div>
         {% block content %} {% if true == true %}
-        <div class="card mt-3 mx-auto" style="height: 300px; width: 700px; overflow: auto">
-            <p class="text-center mt-2">Provided file type: {{ given_type }}</p>
+        <div class="card mt-3 mx-auto" style="height: 400px; width: 700px; overflow: auto">
+            {% if given_type != '' %}
+            <h5 class="text-center mt-2">Provided file type: {{ given_type }}</h5>
+            {% if is_legitimate %}
+            <h5 class="text-center mt-2">Match found!</h5>
+            {% endif %} 
+            {% if not is_legitimate %}
+            <h5 class="text-center mt-2">Attention! File type mismatch detected!</h5>
+            {% endif %}
             <p class="text-center mt-2">Potential File Types:</p>
+            {% endif %}
+            
+            {% if error_message != "" %}
+            <h5 class="text-center mt-2">Url is incorrect!</h5>
+            {% endif %}
+
             <textarea
                 readonly
                 style="outline: none; width: 100%; height: 100%; border: none; resize: none"
@@ -79,7 +101,8 @@
         </textarea
             >
         </div>
-        {% endif %} {% endblock %}{% for item in feed %}
+        {% endif %} 
+        {% endblock %}{% for item in feed %}
         <div class="card mt-3 mx-auto" style="width: 700px">
             <div class="card-body">
                 <h5 class="card-title"><a href="{{ item.link }}">{{ item.title }}</a></h5>
@@ -96,6 +119,10 @@
             </div>
         </div>
         {% endfor %}
+        <footer class="text-center mb-2">
+            <a href="{% url 'impressum' %}">Impressum</a>
+            <p>Copyright ©2022 Your Website</p>
+        </footer>
     </body>
     <script defer>
         $(document).ready(function () {

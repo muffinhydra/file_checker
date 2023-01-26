@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "app",
+    "impressum.apps.ImpressumConfig"
 ]
 
 MIDDLEWARE = [
