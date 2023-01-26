@@ -1,0 +1,12 @@
+.legitimate {
+    background-color: green;
+
+}
+.not-legitimate {
+    background-color: red;
+
+}
+
+.textWhite{
+    color: white;
+}

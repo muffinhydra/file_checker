@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import environ
+
 # Initialise environment variables
 env = environ.Env()
 environ.Env.read_env()
@@ -82,13 +83,13 @@ WSGI_APPLICATION = "file_checker.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': env("MYSQL_ADDON_DB"),
-        'USER': env('MYSQL_ADDON_USER'),
-        'PASSWORD': env('MYSQL_ADDON_PASSWORD'),
-        'HOST': env('MYSQL_ADDON_HOST'),
-        'PORT': env('MYSQL_ADDON_PORT'),
+    "default": {
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": env("MYSQL_ADDON_DB"),
+        "USER": env("MYSQL_ADDON_USER"),
+        "PASSWORD": env("MYSQL_ADDON_PASSWORD"),
+        "HOST": env("MYSQL_ADDON_HOST"),
+        "PORT": env("MYSQL_ADDON_PORT"),
     }
 }
 
