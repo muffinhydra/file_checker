@@ -8,6 +8,10 @@ File Checker is a Django project that allows users to upload or provide a URL fo
 - Django 3.x
 - MySQL
 
+## Database 
+
+For the creation of the DB a list of file signatures from https://www.garykessler.net/library/file_sigs.html was used. 
+
 ## Installation
 
 1. Clone the repository
