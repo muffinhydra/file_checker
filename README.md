@@ -1,6 +1,6 @@
 # File Checker
 
-File Checker is a Django project that allows users to upload or provide a URL for a file and checks the hex header against a MySQL database to determine the file type.
+File Checker is a Django project that allows users to upload or provide a URL for a file and checks the hex header against a MySQL database to determine the file type. This is a project for a Objectoriented Script Languages college course. 
 
 ## Prerequisites
 
