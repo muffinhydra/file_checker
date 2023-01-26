@@ -30,13 +30,20 @@ pip install -r requirements.txt
 4. Create a .env file in the root of the project and set the following environment variables:
 
 SECRET_KEY=<your_secret_key>
+
 DEBUG=True
+
 ALLOWED_HOSTS=127.0.0.1, .localhost
-MYSQL_ADDON_HOST=<host>
-MYSQL_ADDON_DB=<dbname>
-MYSQL_ADDON_USER=<user>
-MYSQL_ADDON_PORT=<port>
-MYSQL_ADDON_PASSWORD=<password>
+
+MYSQL_ADDON_HOST=host
+
+MYSQL_ADDON_DB=dbname
+
+MYSQL_ADDON_USER=user
+
+MYSQL_ADDON_PORT=port
+
+MYSQL_ADDON_PASSWORD=password
 
 5. Run the migrations to create the necessary database tables.
 
