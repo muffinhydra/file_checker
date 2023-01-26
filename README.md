@@ -29,12 +29,6 @@ pip install -r requirements.txt
 
 4. Create a .env file in the root of the project and set the following environment variables:
 
-SECRET_KEY=<your_secret_key>
-
-DEBUG=True
-
-ALLOWED_HOSTS=127.0.0.1, .localhost
-
 MYSQL_ADDON_HOST=host
 
 MYSQL_ADDON_DB=dbname
